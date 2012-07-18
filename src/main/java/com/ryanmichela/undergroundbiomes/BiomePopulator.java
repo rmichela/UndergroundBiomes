@@ -17,7 +17,9 @@ package com.ryanmichela.undergroundbiomes;
 
 import com.ryanmichela.undergroundbiomes.columnpopulators.DesertColumnPopulator;
 import com.ryanmichela.undergroundbiomes.columnpopulators.MushroomColumnPopulator;
+import com.ryanmichela.undergroundbiomes.columnpopulators.UndergroundTreePopulator;
 import org.bukkit.*;
+import org.bukkit.block.Biome;
 import org.bukkit.generator.BlockPopulator;
 
 import java.util.Random;
@@ -33,7 +35,16 @@ public class BiomePopulator extends BlockPopulator {
     public BiomePopulator(UBConfig config) {
         this.config = config;
         columnPopulators = new ColumnPopulator[] { new DesertColumnPopulator(),
-                                                   new MushroomColumnPopulator() };
+                                                   new MushroomColumnPopulator(),
+                                                   new UndergroundTreePopulator(Biome.JUNGLE, TreeType.SMALL_JUNGLE, 10),
+                                                   new UndergroundTreePopulator(Biome.JUNGLE_HILLS, TreeType.SMALL_JUNGLE, 10),
+                                                   new UndergroundTreePopulator(Biome.FOREST, TreeType.TREE, 1),
+                                                   new UndergroundTreePopulator(Biome.FOREST_HILLS, TreeType.TREE, 1),
+                                                   new UndergroundTreePopulator(Biome.TAIGA, TreeType.REDWOOD, 1),
+                                                   new UndergroundTreePopulator(Biome.TAIGA_HILLS, TreeType.REDWOOD, 1),
+                                                   new UndergroundTreePopulator(Biome.MUSHROOM_ISLAND, TreeType.RED_MUSHROOM, 60),
+                                                   new UndergroundTreePopulator(Biome.MUSHROOM_ISLAND, TreeType.BROWN_MUSHROOM, 60)
+                                                 };
     }
 
     @Override

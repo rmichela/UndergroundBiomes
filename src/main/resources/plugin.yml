@@ -1,0 +1,4 @@
+name: UndergroundBiomes
+version: 1.0
+main: com.ryanmichela.undergroundbiomes.UBPlugin
+load: startup

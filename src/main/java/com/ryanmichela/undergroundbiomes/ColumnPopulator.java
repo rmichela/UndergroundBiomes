@@ -15,23 +15,13 @@
 
 package com.ryanmichela.undergroundbiomes;
 
-import org.bukkit.*;
-import org.bukkit.generator.BlockPopulator;
-
-import java.util.Random;
+import org.bukkit.Chunk;
+import org.bukkit.ChunkSnapshot;
+import org.bukkit.block.Biome;
 
 /**
  */
-public class BaseBiomePopulator extends BlockPopulator {
-
-    private UBConfig config;
-
-    public BaseBiomePopulator(UBConfig config) {
-        this.config = config;
-    }
-
-    @Override
-    public void populate(World world, Random random, Chunk chunk) {
-
-    }
+public interface ColumnPopulator {
+    public boolean appliesToBiome(Biome biome);
+    public void decorateColumn(int x, int z, ChunkSnapshot snapshot, Chunk chunk);
 }

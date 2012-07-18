@@ -42,7 +42,7 @@ public class UBPlugin extends JavaPlugin implements Listener {
         String worldName = worldInitEvent.getWorld().getName();
         if (UBConfig.getWorlds().contains(worldName)) {
             getLogger().info("Attaching underground biome populator to world: " + worldName);
-            worldInitEvent.getWorld().getPopulators().add(new BaseBiomePopulator(UBConfig));
+            worldInitEvent.getWorld().getPopulators().add(new BiomePopulator(UBConfig));
         }
     }
 }

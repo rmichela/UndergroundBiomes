@@ -18,12 +18,16 @@ package com.ryanmichela.undergroundbiomes.columnpopulators;
 import com.ryanmichela.undergroundbiomes.ColumnPopulatorBase;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 
 import java.util.Random;
 
 /**
  */
 public class DesertColumnPopulator extends ColumnPopulatorBase {
+    private static Random random = new Random();
+
     @Override
     public boolean appliesToBiome(Biome biome) {
         return biome == Biome.DESERT || biome == Biome.DESERT_HILLS;
@@ -32,5 +36,23 @@ public class DesertColumnPopulator extends ColumnPopulatorBase {
     @Override
     protected Material[] getBiomeSoilBlocks() {
         return new Material[] {Material.SANDSTONE, Material.SAND, Material.SAND, Material.SAND};
+    }
+
+    @Override
+    protected void decorateTopBlock(Block topBlock) {
+        int r = random.nextInt(100);
+        if (r == 0) {
+            buildCactus(topBlock, 2);
+        }
+        if (r == 1) {
+            buildCactus(topBlock, 3);
+        }
+    }
+
+    private void buildCactus(Block root, int height) {
+        for (int i = 0; i < height; i ++) {
+            root.setType(Material.CACTUS);
+            root = root.getRelative(BlockFace.UP);
+        }
     }
 }

@@ -18,12 +18,15 @@ package com.ryanmichela.undergroundbiomes.columnpopulators;
 import com.ryanmichela.undergroundbiomes.ColumnPopulatorBase;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
+import org.bukkit.block.Block;
 
 import java.util.Random;
 
 /**
  */
 public class MushroomColumnPopulator extends ColumnPopulatorBase {
+    private static Random random = new Random();
+
     public boolean appliesToBiome(Biome biome) {
         return biome == Biome.MUSHROOM_ISLAND || biome == Biome.MUSHROOM_ISLAND_SHORE;
     }
@@ -31,5 +34,17 @@ public class MushroomColumnPopulator extends ColumnPopulatorBase {
     @Override
     protected Material[] getBiomeSoilBlocks() {
         return new Material[] {Material.DIRT, Material.DIRT, Material.MYCEL};
+    }
+
+    @Override
+    protected void decorateTopBlock(Block topBlock) {
+        super.decorateTopBlock(topBlock);
+        int r = random.nextInt(10);
+        if (r == 0) {
+            topBlock.setType(Material.RED_MUSHROOM);
+        }
+        if (r == 1) {
+            topBlock.setType(Material.BROWN_MUSHROOM);
+        }
     }
 }

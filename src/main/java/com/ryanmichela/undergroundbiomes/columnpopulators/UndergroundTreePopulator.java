@@ -54,7 +54,7 @@ public class UndergroundTreePopulator implements ColumnPopulator {
             Material thisMaterial = chunk.getBlock(x, y, z).getType();
 
             // Look for an Air->Stone boundary going down
-            if (lastMaterial == Material.AIR && thisMaterial == Material.STONE) {
+            if (lastMaterial == Material.AIR && (thisMaterial == Material.STONE || thisMaterial == Material.GRASS || thisMaterial == Material.DIRT)) {
                 int xx = 16 * chunk.getX() + x;
                 int zz = 16 * chunk.getZ() + z;
                 Location treeLocation = new Location(chunk.getWorld(), xx, y + 1, zz);

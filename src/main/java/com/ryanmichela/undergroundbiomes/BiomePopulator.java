@@ -15,10 +15,7 @@
 
 package com.ryanmichela.undergroundbiomes;
 
-import com.ryanmichela.undergroundbiomes.columnpopulators.DesertColumnPopulator;
-import com.ryanmichela.undergroundbiomes.columnpopulators.GrassColumnPopulator;
-import com.ryanmichela.undergroundbiomes.columnpopulators.MushroomColumnPopulator;
-import com.ryanmichela.undergroundbiomes.columnpopulators.UndergroundTreePopulator;
+import com.ryanmichela.undergroundbiomes.columnpopulators.*;
 import org.bukkit.*;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.BlockPopulator;

@@ -18,12 +18,16 @@ package com.ryanmichela.undergroundbiomes.columnpopulators;
 import com.ryanmichela.undergroundbiomes.ColumnPopulatorBase;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 
 import java.util.Random;
 
 /**
  */
 public class GrassColumnPopulator extends ColumnPopulatorBase {
+    private static Random random = new Random();
+
     @Override
     public boolean appliesToBiome(Biome biome) {
         return  biome == Biome.BIRCH_FOREST ||
@@ -55,5 +59,46 @@ public class GrassColumnPopulator extends ColumnPopulatorBase {
     @Override
     protected Material[] getBiomeSoilBlocks() {
         return new Material[]{Material.DIRT, Material.DIRT, Material.GRASS};
+    }
+
+    @Override
+    protected void decorateTopBlock(Block topBlock) {
+        int r = random.nextInt(20);
+        if (r == 0) {
+            topBlock.setType(Material.LONG_GRASS);
+            topBlock.setData((byte)1);
+        }
+        if (r == 1) {
+            topBlock.setType(Material.LONG_GRASS);
+            topBlock.setData((byte)2);
+        }
+        if (r == 3) {
+            topBlock.setType(Material.DOUBLE_PLANT);
+            topBlock.setData((byte)2);
+            Block doubleTopBlock = topBlock.getRelative(BlockFace.UP);
+            doubleTopBlock.setType(Material.DOUBLE_PLANT);
+            doubleTopBlock.setData((byte)8);
+        }
+        if (r == 4) {
+            topBlock.setType(Material.DOUBLE_PLANT);
+            topBlock.setData((byte)3);
+            Block doubleTopBlock = topBlock.getRelative(BlockFace.UP);
+            doubleTopBlock.setType(Material.DOUBLE_PLANT);
+            doubleTopBlock.setData((byte)8);
+        }
+        if (r == 5) {
+            topBlock.setType(Material.DOUBLE_PLANT);
+            topBlock.setData((byte)5);
+            Block doubleTopBlock = topBlock.getRelative(BlockFace.UP);
+            doubleTopBlock.setType(Material.DOUBLE_PLANT);
+            doubleTopBlock.setData((byte)8);
+        }
+        if (r == 6) {
+            topBlock.setType(Material.DOUBLE_PLANT);
+            topBlock.setData((byte)4);
+            Block doubleTopBlock = topBlock.getRelative(BlockFace.UP);
+            doubleTopBlock.setType(Material.DOUBLE_PLANT);
+            doubleTopBlock.setData((byte)8);
+        }
     }
 }

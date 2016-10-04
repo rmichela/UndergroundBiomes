@@ -18,6 +18,7 @@ package com.ryanmichela.undergroundbiomes;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 
 /**
  */
@@ -29,21 +30,22 @@ public abstract class ColumnPopulatorBase implements ColumnPopulator {
 
         int startY = Math.max(snapshot.getHighestBlockYAt(x, z) - 1, chunk.getWorld().getSeaLevel());
 
-        Material lastMaterial = chunk.getBlock(x, startY + 1, z).getType();
+        Block lastBlock = chunk.getBlock(x, startY + 1, z);
 
         for (int y = startY; y >=0; y--) {
-            Material thisMaterial = chunk.getBlock(x, y, z).getType();
+            Block thisBlock = chunk.getBlock(x, y, z);
 
             // Look for an Air->Stone boundary going down
-            if (lastMaterial == Material.AIR && thisMaterial == Material.STONE) {
+            if (lastBlock.getType() == Material.AIR && thisBlock.getType() == Material.STONE) {
                 int lightLevel = snapshot.getBlockSkyLight(x, y+1, z);
                 if (lightLevel >= appliesAtMinimumSkyLightLevel()) {
+                    decorateTopBlock(lastBlock);
                     soilBlockIndex = soilBlocks.length - 1;
                 }
             }
 
             // Look for a Stone->Anything Else boundary going down
-            if (lastMaterial == Material.STONE && thisMaterial != Material.STONE) {
+            if (lastBlock.getType() == Material.STONE && thisBlock.getType() != Material.STONE) {
                 soilBlockIndex = -1;
             }
 
@@ -52,13 +54,15 @@ public abstract class ColumnPopulatorBase implements ColumnPopulator {
                 soilBlockIndex--;
             }
 
-            lastMaterial = thisMaterial;
+            lastBlock = thisBlock;
         }
     }
 
     protected byte appliesAtMinimumSkyLightLevel() {
         return 0;
     }
+
+    protected void decorateTopBlock(Block topBlock){}
 
     protected abstract Material[] getBiomeSoilBlocks();
 }

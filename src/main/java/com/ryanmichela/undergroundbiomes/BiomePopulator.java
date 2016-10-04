@@ -54,18 +54,15 @@ public class BiomePopulator extends BlockPopulator {
 
     @Override
     public void populate(World world, Random random, Chunk chunk) {
-//        Runnable run = () -> {
-            ChunkSnapshot snapshot = chunk.getChunkSnapshot(true, true, false);
-            for (int x = 0; x < 16; x++) {
-                for (int z = 0; z < 16; z++) {
-                    for (int p = 0; p < columnPopulators.length; p++) {
-                        if (columnPopulators[p].appliesToBiome(snapshot.getBiome(x, z))) {
-                            columnPopulators[p].decorateColumn(x, z, snapshot, chunk);
-                        }
+        ChunkSnapshot snapshot = chunk.getChunkSnapshot(true, true, false);
+        for (int x = 0; x < 16; x++) {
+            for (int z = 0; z < 16; z++) {
+                for (int p = 0; p < columnPopulators.length; p++) {
+                    if (columnPopulators[p].appliesToBiome(snapshot.getBiome(x, z))) {
+                        columnPopulators[p].decorateColumn(x, z, snapshot, chunk);
                     }
                 }
             }
-//        };
-//        ubPlugin.getServer().getScheduler().scheduleSyncDelayedTask(ubPlugin, run, 20);
+        }
     }
 }

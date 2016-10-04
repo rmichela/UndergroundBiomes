@@ -19,12 +19,13 @@ import com.ryanmichela.undergroundbiomes.ColumnPopulatorBase;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 
+import java.util.Random;
+
 /**
  */
 public class MushroomColumnPopulator extends ColumnPopulatorBase {
-    @Override
     public boolean appliesToBiome(Biome biome) {
-        return biome == Biome.MUSHROOM_ISLAND || biome == Biome.MUSHROOM_SHORE;
+        return biome == Biome.MUSHROOM_ISLAND || biome == Biome.MUSHROOM_ISLAND_SHORE;
     }
 
     @Override

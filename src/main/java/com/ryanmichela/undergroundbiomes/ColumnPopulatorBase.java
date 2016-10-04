@@ -27,10 +27,12 @@ public abstract class ColumnPopulatorBase implements ColumnPopulator {
         Material[] soilBlocks = getBiomeSoilBlocks();
         int soilBlockIndex = -1;
 
-        Material lastMaterial = Material.getMaterial(snapshot.getBlockTypeId(x, snapshot.getHighestBlockYAt(x, z), z));
+        int startY = Math.max(snapshot.getHighestBlockYAt(x, z) - 1, chunk.getWorld().getSeaLevel());
 
-        for (int y = snapshot.getHighestBlockYAt(x, z) - 1; y >=0; y--) {
-            Material thisMaterial = Material.getMaterial(snapshot.getBlockTypeId(x, y, z));
+        Material lastMaterial = chunk.getBlock(x, startY + 1, z).getType();
+
+        for (int y = startY; y >=0; y--) {
+            Material thisMaterial = chunk.getBlock(x, y, z).getType();
 
             // Look for an Air->Stone boundary going down
             if (lastMaterial == Material.AIR && thisMaterial == Material.STONE) {
@@ -43,12 +45,20 @@ public abstract class ColumnPopulatorBase implements ColumnPopulator {
             }
 
             if (soilBlockIndex > -1) {
-                chunk.getBlock(x, y, z).setType(soilBlocks[soilBlockIndex]);
+                byte lightLevel = chunk.getBlock(x, y, z).getLightLevel();
+
+                if (lightLevel >= appliesAtMinimumSkyLightLevel()) {
+                    chunk.getBlock(x, y, z).setType(soilBlocks[soilBlockIndex]);
+                }
                 soilBlockIndex--;
             }
 
             lastMaterial = thisMaterial;
         }
+    }
+
+    protected byte appliesAtMinimumSkyLightLevel() {
+        return 0;
     }
 
     protected abstract Material[] getBiomeSoilBlocks();

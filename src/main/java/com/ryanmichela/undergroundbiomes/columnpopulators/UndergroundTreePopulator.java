@@ -23,7 +23,7 @@ import java.util.Random;
 
 /**
  */
-public class UndergroundTreePopulator implements ColumnPopulator{
+public class UndergroundTreePopulator implements ColumnPopulator {
     private Biome appliesTo;
     private TreeType treeType;
     private int maxRand;
@@ -42,16 +42,16 @@ public class UndergroundTreePopulator implements ColumnPopulator{
 
     @Override
     public void decorateColumn(int x, int z, ChunkSnapshot snapshot, Chunk chunk) {
-        // 1 in 1000 chance of spawning a tree in a column underground
+        // 1 in 10000 chance of spawning a tree in a column underground
         int nextRand = r.nextInt(10000);
         if (nextRand > maxRand) {
             return;
         }
 
-        Material lastMaterial = Material.getMaterial(snapshot.getBlockTypeId(x, snapshot.getHighestBlockYAt(x, z), z));
+        Material lastMaterial = chunk.getBlock(x, snapshot.getHighestBlockYAt(x, z), z).getType();
 
         for (int y = snapshot.getHighestBlockYAt(x, z) - 1; y >=0; y--) {
-            Material thisMaterial = Material.getMaterial(snapshot.getBlockTypeId(x, y, z));
+            Material thisMaterial = chunk.getBlock(x, y, z).getType();
 
             // Look for an Air->Stone boundary going down
             if (lastMaterial == Material.AIR && thisMaterial == Material.STONE) {

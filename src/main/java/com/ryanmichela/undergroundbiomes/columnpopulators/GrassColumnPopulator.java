@@ -19,16 +19,41 @@ import com.ryanmichela.undergroundbiomes.ColumnPopulatorBase;
 import org.bukkit.Material;
 import org.bukkit.block.Biome;
 
+import java.util.Random;
+
 /**
  */
-public class DesertColumnPopulator extends ColumnPopulatorBase {
+public class GrassColumnPopulator extends ColumnPopulatorBase {
     @Override
     public boolean appliesToBiome(Biome biome) {
-        return biome == Biome.DESERT || biome == Biome.DESERT_HILLS;
+        return  biome == Biome.BIRCH_FOREST ||
+                biome == Biome.BIRCH_FOREST_HILLS ||
+                biome == Biome.EXTREME_HILLS ||
+                biome == Biome.EXTREME_HILLS_WITH_TREES ||
+                biome == Biome.FOREST ||
+                biome == Biome.FOREST_HILLS ||
+                biome == Biome.JUNGLE ||
+                biome == Biome.JUNGLE_EDGE ||
+                biome == Biome.JUNGLE_HILLS ||
+                biome == Biome.PLAINS ||
+                biome == Biome.ROOFED_FOREST ||
+                biome == Biome.SAVANNA ||
+                biome == Biome.SAVANNA_ROCK ||
+                biome == Biome.SMALLER_EXTREME_HILLS ||
+                biome == Biome.TAIGA ||
+                biome == Biome.TAIGA_COLD ||
+                biome == Biome.TAIGA_COLD_HILLS ||
+                biome == Biome.TAIGA_HILLS ||
+                biome == Biome.RIVER;
+    }
+
+    @Override
+    protected byte appliesAtMinimumSkyLightLevel() {
+        return 3;
     }
 
     @Override
     protected Material[] getBiomeSoilBlocks() {
-        return new Material[] {Material.SANDSTONE, Material.SAND, Material.SAND, Material.SAND};
+        return new Material[]{Material.DIRT, Material.DIRT, Material.GRASS};
     }
 }

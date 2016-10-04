@@ -16,6 +16,7 @@
 package com.ryanmichela.undergroundbiomes;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.WorldInitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -37,12 +38,12 @@ public class UBPlugin extends JavaPlugin implements Listener {
         getServer().getPluginManager().registerEvents(this, this);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     private void onWorldInit(WorldInitEvent worldInitEvent) {
         String worldName = worldInitEvent.getWorld().getName();
         if (UBConfig.getWorlds().contains(worldName)) {
             getLogger().info("Attaching underground biome populator to world: " + worldName);
-            worldInitEvent.getWorld().getPopulators().add(new BiomePopulator(UBConfig));
+            worldInitEvent.getWorld().getPopulators().add(new BiomePopulator(this, UBConfig));
         }
     }
 }

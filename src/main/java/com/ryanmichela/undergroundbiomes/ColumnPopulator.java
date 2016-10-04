@@ -22,6 +22,6 @@ import org.bukkit.block.Biome;
 /**
  */
 public interface ColumnPopulator {
-    public boolean appliesToBiome(Biome biome);
-    public void decorateColumn(int x, int z, ChunkSnapshot snapshot, Chunk chunk);
+    boolean appliesToBiome(Biome biome);
+    void decorateColumn(int x, int z, ChunkSnapshot snapshot, Chunk chunk);
 }

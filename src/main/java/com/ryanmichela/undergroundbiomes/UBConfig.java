@@ -24,12 +24,18 @@ import java.util.List;
 public class UBConfig {
 
     private List<String> worlds;
+    private int frequencyMultiplier;
 
     public UBConfig(ConfigurationSection rawConfig) {
         worlds = rawConfig.getStringList("worlds");
+        frequencyMultiplier = rawConfig.getInt("frequencyMultiplier");
     }
 
     public List<String> getWorlds() {
         return worlds;
+    }
+
+    public int getFrequencyMultiplier() {
+        return frequencyMultiplier;
     }
 }

@@ -1,3 +1,6 @@
-# The list of worlds to add Silverfish colonies
+# The list of worlds to add underground biomes
 worlds:
   - world
+
+# A multiplier to increase the frequency of underground tree generation
+frequencyMultiplier: 3

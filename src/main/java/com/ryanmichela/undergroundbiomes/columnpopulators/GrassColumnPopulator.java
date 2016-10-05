@@ -53,7 +53,7 @@ public class GrassColumnPopulator extends ColumnPopulatorBase {
 
     @Override
     protected byte appliesAtMinimumSkyLightLevel() {
-        return 3;
+        return 1;
     }
 
     @Override

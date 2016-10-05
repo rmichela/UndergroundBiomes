@@ -37,7 +37,13 @@ public abstract class ColumnPopulatorBase implements ColumnPopulator {
 
             // Look for an Air->Stone boundary going down
             if (lastBlock.getType() == Material.AIR && thisBlock.getType() == Material.STONE) {
-                int lightLevel = snapshot.getBlockSkyLight(x, y+1, z);
+                int lightLevel;
+                try {
+                    lightLevel = snapshot.getBlockSkyLight(x, y + 1, z);
+                } catch (Exception ex) {
+                    lightLevel = 0;
+                }
+
                 if (lightLevel >= appliesAtMinimumSkyLightLevel()) {
                     decorateTopBlock(lastBlock);
                     soilBlockIndex = soilBlocks.length - 1;

@@ -29,29 +29,6 @@ public class GrassColumnPopulator extends ColumnPopulatorBase {
     private static Random random = new Random();
 
     @Override
-    public boolean appliesToBiome(Biome biome) {
-        return  biome == Biome.BIRCH_FOREST ||
-                biome == Biome.BIRCH_FOREST_HILLS ||
-                biome == Biome.EXTREME_HILLS ||
-                biome == Biome.EXTREME_HILLS_WITH_TREES ||
-                biome == Biome.FOREST ||
-                biome == Biome.FOREST_HILLS ||
-                biome == Biome.JUNGLE ||
-                biome == Biome.JUNGLE_EDGE ||
-                biome == Biome.JUNGLE_HILLS ||
-                biome == Biome.PLAINS ||
-                biome == Biome.ROOFED_FOREST ||
-                biome == Biome.SAVANNA ||
-                biome == Biome.SAVANNA_ROCK ||
-                biome == Biome.SMALLER_EXTREME_HILLS ||
-                biome == Biome.TAIGA ||
-                biome == Biome.TAIGA_COLD ||
-                biome == Biome.TAIGA_COLD_HILLS ||
-                biome == Biome.TAIGA_HILLS ||
-                biome == Biome.RIVER;
-    }
-
-    @Override
     protected byte appliesAtMinimumSkyLightLevel() {
         return 1;
     }
@@ -100,5 +77,45 @@ public class GrassColumnPopulator extends ColumnPopulatorBase {
             doubleTopBlock.setType(Material.DOUBLE_PLANT);
             doubleTopBlock.setData((byte)8);
         }
+    }
+
+    @Override
+    public boolean appliesToBiome(Biome biome) {
+        return  biome == Biome.BIRCH_FOREST ||
+                biome == Biome.BIRCH_FOREST_HILLS ||
+                biome == Biome.MUTATED_BIRCH_FOREST_HILLS ||
+                biome == Biome.MUTATED_BIRCH_FOREST_HILLS ||
+                biome == Biome.EXTREME_HILLS ||
+                biome == Biome.EXTREME_HILLS_WITH_TREES ||
+                biome == Biome.MUTATED_EXTREME_HILLS ||
+                biome == Biome.MUTATED_EXTREME_HILLS_WITH_TREES ||
+                biome == Biome.FOREST ||
+                biome == Biome.FOREST_HILLS ||
+                biome == Biome.MUTATED_FOREST ||
+                biome == Biome.JUNGLE ||
+                biome == Biome.JUNGLE_EDGE ||
+                biome == Biome.JUNGLE_HILLS ||
+                biome == Biome.MUTATED_JUNGLE ||
+                biome == Biome.MUTATED_JUNGLE_EDGE ||
+                biome == Biome.PLAINS ||
+                biome == Biome.MUTATED_PLAINS ||
+                biome == Biome.ROOFED_FOREST ||
+                biome == Biome.MUTATED_ROOFED_FOREST ||
+                biome == Biome.REDWOOD_TAIGA ||
+                biome == Biome.REDWOOD_TAIGA_HILLS ||
+                biome == Biome.MUTATED_REDWOOD_TAIGA ||
+                biome == Biome.MUTATED_REDWOOD_TAIGA_HILLS ||
+                biome == Biome.SAVANNA ||
+                biome == Biome.SAVANNA_ROCK ||
+                biome == Biome.MUTATED_SAVANNA ||
+                biome == Biome.MUTATED_SAVANNA_ROCK ||
+                biome == Biome.SMALLER_EXTREME_HILLS ||
+                biome == Biome.TAIGA ||
+                biome == Biome.TAIGA_COLD ||
+                biome == Biome.TAIGA_COLD_HILLS ||
+                biome == Biome.TAIGA_HILLS ||
+                biome == Biome.MUTATED_TAIGA ||
+                biome == Biome.MUTATED_TAIGA_COLD ||
+                biome == Biome.RIVER;
     }
 }

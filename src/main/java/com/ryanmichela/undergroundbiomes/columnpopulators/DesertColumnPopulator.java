@@ -30,7 +30,9 @@ public class DesertColumnPopulator extends ColumnPopulatorBase {
 
     @Override
     public boolean appliesToBiome(Biome biome) {
-        return biome == Biome.DESERT || biome == Biome.DESERT_HILLS;
+        return  biome == Biome.DESERT ||
+                biome == Biome.DESERT_HILLS ||
+                biome == Biome.MUTATED_DESERT;
     }
 
     @Override
